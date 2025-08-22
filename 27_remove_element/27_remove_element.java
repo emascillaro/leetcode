@@ -71,9 +71,12 @@ Constraints:
 
  */
 
+
+
+/*
 import java.util.Arrays;
 
-class Solution {
+ class Solution {
     public int removeElement(int[] nums, int val) {
         // Replace instance of val with 100 
         for(int i = 0; i < nums.length; i++){
@@ -94,5 +97,23 @@ class Solution {
             }
         }
         return k;
+    }
+}
+*/
+
+// Improved time complexity (O(n)) vs previous solution (O(nlogn))
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int L = 0;
+
+        for(int R = 0; R <= nums.length-1; R++){
+            if(nums[R] != val){
+                nums[L] = nums[R];
+                L++;
+            }
+        }
+        int k = L;
+        return k;
+        
     }
 }
