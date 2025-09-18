@@ -30,6 +30,10 @@ Constraints:
 Follow up: Could you solve it without converting the integer to a string?
 */
 
+/*
+
+// String Solution
+
  class Solution {
     public boolean isPalindrome(int x) {
         String y = Integer.toString(x);
@@ -42,6 +46,65 @@ Follow up: Could you solve it without converting the integer to a string?
             r--;
         }
         return true;
+    }
+
+}
+
+// Divider Solution
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        // Return false if x is negative
+        if(x < 0){
+            return false;
+        }
+
+        // Calculate divider
+        int div = 1;
+        while(x/div >= 10){
+            div = div * 10;
+        }
+
+        while(x > 0){
+            // Determine rightmost and leftmost values
+            int right_value = x % 10;
+            int left_value = x / div;
+
+            // Check equality
+            if(right_value != left_value){
+                return false;
+            }
+
+            // Update x to remove leftmost and rightmost values
+            x = x % div;
+            x = x / 10;
+
+            // Update divider value
+            div = div / 100;
+        }
+        return true;
+    }
+
+}
+
+*/
+
+// Reversal Solution
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        int number = x;
+        int reverse_number = 0;
+
+        if(number < 0){
+            return false;
+        }
+
+        while(number > 0){
+            reverse_number = reverse_number * 10 + number % 10;
+            number = number / 10;
+        }
+        return reverse_number == x;
     }
 
 }
