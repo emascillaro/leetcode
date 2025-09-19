@@ -31,9 +31,9 @@ Follow up: What if the inputs contain Unicode characters? How would you adapt yo
 
 */
 
-import java.util.Arrays;
 
 /*
+import java.util.Arrays;
 
 class Solution {
     public boolean isAnagram(String s, String t) {
@@ -55,6 +55,10 @@ class Solution {
 
 */
 
+/*
+
+import java.util.Arrays;
+
 class Solution {
   public boolean isAnagram(String s, String t) {
 
@@ -72,4 +76,36 @@ class Solution {
 
     return Arrays.equals(s_counts, t_counts);
   }
+}
+
+*/
+
+
+// Hashmap Solution - works for inputs of any unicode characters
+
+import java.util.HashMap;
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        
+        if(s.length() != t.length()){
+            return false;
+        }
+
+        HashMap<Character, Integer> character_counts = new HashMap<>();
+
+        for(int i = 0; i < s.length(); i++){
+            character_counts.put(s.charAt(i), character_counts.getOrDefault(s.charAt(i), 0) + 1);
+            character_counts.put(t.charAt(i), character_counts.getOrDefault(t.charAt(i), 0) - 1);
+        }
+
+        for(int value : character_counts.values()){
+            if(value != 0){
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 }
