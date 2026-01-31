@@ -29,6 +29,7 @@ Follow up: A linked list can be reversed either iteratively or recursively. Coul
 */
 
 // Iterative Solution
+/*
 class Solution {
     public ListNode reverseList(ListNode head) {
         // Create reversed list head
@@ -49,5 +50,28 @@ class Solution {
         }
 
         return reversedHead;
+    }
+}
+*/
+
+// Recursive Solution
+
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        
+        // Check base case where list is 0 or 1 nodes
+        if (head == null || head.next == null){
+            return head;
+        }
+
+        // Recurse to end of call stack
+        ListNode new_head = reverseList(head.next);
+
+        // Reverse pointers
+        head.next.next = head;
+        head.next = null;
+        
+        // Return reversed head
+        return new_head;
     }
 }
