@@ -28,8 +28,33 @@ Constraints:
     0 <= prices[i] <= 104
 
 */
-class Solution {
-    public int maxProfit(int[] prices){
 
+class Solution {
+    public int maxProfit(int[] prices) {
+        
+        // Initialize left and right pointers
+        int left = 0;
+        int right = 1;
+
+        // Initialize current and maximum profit
+        int current_profit = 0;
+        int max_profit = 0;
+
+        // Check all cases before right reaches the end of the array
+        while(right < prices.length){
+
+            // If the current profit is positive, calculate and update max profit
+            if(prices[right] > prices[left]){
+                current_profit = prices[right] - prices[left];
+                max_profit = Math.max(max_profit, current_profit);
+            }
+            // If current profit is negative, shift left buy pointer to new minimum value at right pointer
+            else{
+                left = right;
+            }
+            right++;
+        }
+
+        return max_profit;
     }
 }
