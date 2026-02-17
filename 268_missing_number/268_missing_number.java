@@ -46,14 +46,39 @@ Follow up: Could you implement a solution using only O(1) extra space complexity
 
 */
 
-class Solution {
-    public int missingNumber(int[] nums) {
-        int res = nums.length;
 
-        for (int i = 0; i < nums.length; i++){
+/*
+// sum of range - sum of numbers in array will result in missing number
+class Solution {
+    public int missingNumber(int[] nums) {  // ex: nums=[3, 0, 1]
+        int res = nums.length; // ex:3
+
+        for (int i = 0; i < nums.length; i++){  //ex: i=0, i=1, i=2
+            //ex: res = 3 + 0 - 3 = 0
+            //ex: res = 0 + 1 - 0 = 1
+            //ex: res = 1 + 2 - 1 = 2
             res += i - nums[i];
         }
 
         return res;
+    }
+}
+*/
+
+// XOR Bit manipulation
+class Solution{
+    public int missingNumber(int[] nums){  //ex: nums = [3, 0, 1]
+        int ans = 0;
+        int n = nums.length; //ex: n = 3
+
+        for (int i = 0; i <= n; i++){
+            // ex: 0 ^ 1 ^ 2 ^ 3
+            ans = ans ^ i;
+        }
+        for (int i = 0; i < n; i ++){
+            // (0 ^ 1 ^ 2 ^ 3) ^ 3 ^ 0 ^ 1
+            ans = ans ^ nums[i];
+        }
+        return ans;
     }
 }
