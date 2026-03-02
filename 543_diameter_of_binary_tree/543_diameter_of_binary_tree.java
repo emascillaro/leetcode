@@ -27,3 +27,25 @@ Constraints:
 
 
 */
+
+class Solution {
+    int ans = 0;
+
+    public int diameterOfBinaryTree(TreeNode root) {
+        depthFirstSearch(root);
+        return ans;
+    }
+
+    private int depthFirstSearch(TreeNode root){
+        if (root == null){
+            return 0;
+        }
+
+        int l = depthFirstSearch(root.left);
+        int r = depthFirstSearch(root.right);
+
+        ans = Math.max(ans, l+r);
+
+        return 1 + Math.max(l, r);
+    }
+}
