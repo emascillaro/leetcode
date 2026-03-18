@@ -34,3 +34,10 @@ Constraints:
     nums is an ascending array that is possibly rotated.
     -104 <= target <= 104
 */
+
+class Solution {
+    public int search(int[] nums, int target) {
+        int targetPosition = null;
+        return targetPosition;
+    }
+}
