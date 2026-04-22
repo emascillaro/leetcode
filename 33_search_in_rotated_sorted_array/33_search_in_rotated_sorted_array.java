@@ -1,13 +1,18 @@
 /*
 There is an integer array nums sorted in ascending order (with distinct values).
 
-Prior to being passed to your function, nums is possibly left rotated at an unknown index k (1 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be left rotated by 3 indices and become [4,5,6,7,0,1,2].
+Prior to being passed to your function, nums is possibly left rotated at an
+unknown index k (1 <= k < nums.length) such that the resulting array is
+[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]
+(0-indexed). For example, [0,1,2,4,5,6,7] might be left rotated by 3 indices and
+become [4,5,6,7,0,1,2].
 
-Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.
+Given the array nums after the possible rotation and an integer target, return
+the index of target if it is in nums, or -1 if it is not in nums.
 
 You must write an algorithm with O(log n) runtime complexity.
 
- 
+
 
 Example 1:
 
@@ -24,7 +29,7 @@ Example 3:
 Input: nums = [1], target = 0
 Output: -1
 
- 
+
 
 Constraints:
 
@@ -36,8 +41,49 @@ Constraints:
 */
 
 class Solution {
-    public int search(int[] nums, int target) {
-        int targetPosition = null;
-        return targetPosition;
+  // Search for minimum in a rotated sorted array
+  private int findMin(int[] nums) {
+    int start = 0;
+    int end = nums.length - 1;
+
+    while (start < end) {
+      int mid = (start + end) / 2;
+
+      // if mid > end, left half is sorted -- min is in right half
+      if (nums[mid] > nums[end]) {
+        start = mid + 1;
+      }
+
+      // if mid < end, right half is sorted -- min is in left half
+      else if (nums[mid] < nums[end]) {
+        end = mid;
+      }
     }
+    int pivot = start;
+    return pivot;
+  }
+
+  public int search(int[] nums, int target) {
+    int pivot = findMin(nums);
+    int targetPosition;
+
+    if (pivot == 0) {
+      // perform binary search on full array
+    }
+
+    else if (target >= nums[0]) {
+      // perform binary search from start to pivot - 1
+    }
+
+    else if (target < nums[0]) {
+      // perform binary search from pivot to end
+    }
+
+    // target does not exist in nums
+    else {
+      targetPosition = -1;
+    }
+
+    return targetPosition;
+  }
 }
